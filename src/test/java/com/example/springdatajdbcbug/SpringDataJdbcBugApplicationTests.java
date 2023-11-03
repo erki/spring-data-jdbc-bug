@@ -1,5 +1,6 @@
 package com.example.springdatajdbcbug;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,10 @@ class SpringDataJdbcBugApplicationTests {
     private AggregateRepository aggregateRepository;
 
     @Test
-    void testSetMappingBug() {
+    void test() {
         Aggregate aggregate = new Aggregate("1", Set.of(new ChildEntity("Alice"), new ChildEntity("Bob")));
         aggregateRepository.save(aggregate);
-        Aggregate loadedAggregate = aggregateRepository.findById("1").get();
+        Optional<Aggregate> loadedAggregate = aggregateRepository.findById("1");
     }
 
 }
